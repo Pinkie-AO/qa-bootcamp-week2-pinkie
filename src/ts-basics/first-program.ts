@@ -1,4 +1,4 @@
-let userName: string = "Pinkie";
+const userName: string = "Pinkie";
 let age: number = 25;
 let isLearning: boolean = true;
 
