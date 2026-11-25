@@ -69,3 +69,29 @@ Run these steps in order from a terminal.
 
 - `npm run check`: checks your `.env` and that you can reach the Toolshop API.
 - `npm test`: runs the Playwright tests in `tests/`.
+
+## Week 2 Day 6 – TypeScript Practice
+
+### TypeScript Basics
+Created practical examples covering:
+- Basic types: string, number and boolean
+- Tuples
+- Functions and return types
+- Objects and optional properties
+- Type aliases
+- Union types
+- Optional chaining
+
+### Profile Validator
+Created `src/profile-validator.ts` to:
+- Define a typed user profile using a type alias.
+- Handle optional settings and notification properties.
+- Check notification preferences safely using optional chaining and nullish coalescing.
+- Test users with enabled notifications, missing settings, and missing notifications.
+
+**Execution:** `npx.cmd tsx src/profile-validator.ts`
+
+**Expected output:**
+- pinkie true
+- jane false
+- alex false
