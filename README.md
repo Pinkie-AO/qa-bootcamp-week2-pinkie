@@ -1,71 +1,85 @@
-# QA Bootcamp Week 2 Starter
+# QA Bootcamp Week 2 – Playwright Test Suite
 
-This is the starting point for Week 2 of the QA bootcamp. During the week you will use it to practise:
-
-- TypeScript
-- Playwright (UI testing)
-- Postman (API testing)
-- The Toolshop REST API
-
-There are no tests in this repo. You will write them during the week.
+This repository contains UI and API automated tests written using TypeScript and Playwright for the Practice Software Testing Toolshop application.
 
 ## Prerequisites
 
-Install these before you start:
-
-- [Node.js](https://nodejs.org/) (the current LTS version)
+- [Node.js](https://nodejs.org/) (current LTS version)
 - [Git](https://git-scm.com/)
 - [VS Code](https://code.visualstudio.com/)
 
 ## Setup
 
-Run these steps in order from a terminal.
+Clone the repository and open the project folder:
 
-1. Clone the repo and open the folder:
+```bash
+git clone <repo-url>
+cd qa-bootcamp-week2-starter
+```
 
-   ```bash
-   git clone <repo-url>
-   cd qa-bootcamp-week2-starter
-   ```
+Complete these three setup steps:
 
-2. Install the dependencies:
+1. **Install dependencies and the Playwright browser:**
 
    ```bash
    npm install
-   ```
-
-3. Install the Chromium browser for Playwright:
-
-   ```bash
    npx playwright install chromium
    ```
 
-4. Copy `.env.example` to `.env`:
+2. **Configure environment variables:**
+
+   Copy `.env.example` to `.env`.
 
    ```bash
    cp .env.example .env
    ```
 
-   `.env` already contains the Toolshop website URL (`TOOLSHOP_URL`) and the Toolshop API URL (`TOOLSHOP_API_URL`). Only change them if your trainer gives you different URLs.
+   The `.env` file contains the Toolshop website and API URLs. Do not commit this file.
 
-5. Check that your setup works:
+3. **Run the test suite:**
 
    ```bash
-   npm run check
+   npm test
    ```
 
-   This sends a GET request to the Toolshop API's `/products` endpoint (no login needed). If everything is set up correctly, it prints your Node version, the HTTP status (200), the number of products, and a last line that says `PASS`.
+   To list all discovered tests without executing them:
 
-> **Warning:** never commit `.env`. It is where your own settings and, later in the course, your secrets (keys, tokens, passwords) live. It is listed in `.gitignore` so Git ignores it. Do not remove it from there.
+   ```bash
+   npx playwright test --list
+   ```
 
-## Folders
+## Project Structure
 
-| Folder     | What it is for |
-|------------|----------------|
-| `tests/`   | Your Playwright tests. It is empty for now; you will add tests during the week. |
-| `scripts/` | Helper scripts. `check.ts` checks your setup and is run by `npm run check`. |
+| Folder/File | Purpose |
+|---|---|
+| `tests/` | Contains Playwright UI and API tests |
+| `tests/homepage.spec.ts` | Tests the homepage title |
+| `tests/login.spec.ts` | Tests invalid login behaviour |
+| `tests/search.spec.ts` | Tests product search using a Page Object |
+| `tests/api-products.spec.ts` | Tests product and cart API behaviour |
+| `pages/` | Contains Page Object classes |
+| `pages/SearchPage.ts` | Encapsulates search page locators and actions |
+| `scripts/` | Contains helper scripts |
+| `playwright.config.ts` | Playwright test configuration |
 
-## Scripts
+## Available Commands
 
-- `npm run check`: checks your `.env` and that you can reach the Toolshop API.
-- `npm test`: runs the Playwright tests in `tests/`.
+- `npm run check` – checks the project setup and API connectivity.
+- `npm test` – runs the complete Playwright test suite.
+- `npx playwright test --list` – lists all discovered tests.
+- `npx playwright test --headed` – runs tests with a visible browser.
+
+## Test Coverage
+
+The suite includes:
+
+- Homepage title verification.
+- Invalid login validation.
+- Product search.
+- Retrieving products through the API.
+- Creating a cart and adding a product.
+- Handling a request for a nonexistent cart.
+
+## Security
+
+Never commit `.env` or expose passwords, API keys or other secrets. The `.env` file is excluded through `.gitignore`.
