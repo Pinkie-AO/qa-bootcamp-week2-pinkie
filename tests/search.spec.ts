@@ -1,23 +1,17 @@
-
 import { test, expect } from '@playwright/test';
+import { SearchPage } from '../pages/SearchPage';
 
 test('search returns products matching pliers', async ({ page }) => {
-  await page.goto('https://practicesoftwaretesting.com/');
+  const searchPage = new SearchPage(page);
 
-  const searchBox = page.getByPlaceholder('Search');
+  await searchPage.open();
+  await searchPage.searchForProduct('pliers');
 
-  await searchBox.fill('pliers');
-  await searchBox.press('Enter');
+  await expect(searchPage.productNames).toHaveCount(4);
 
-  const productNames = page.locator('[data-test="product-name"]');
-
-  await expect(productNames).toHaveCount(4);
-
-  const count = await productNames.count();
+  const count = await searchPage.productNames.count();
 
   for (let i = 0; i < count; i++) {
-    await expect(productNames.nth(i)).toContainText(/pliers/i);
+    await expect(searchPage.productNames.nth(i)).toContainText(/pliers/i);
   }
 });
-
-
