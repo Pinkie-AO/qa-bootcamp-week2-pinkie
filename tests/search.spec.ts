@@ -9,7 +9,7 @@ test('search returns products matching pliers', async ({ page }) => {
 
   await expect(searchPage.productNames).toHaveCount(4);
 
-  const count = await searchPage.productNames.count();
+  const count = await searchPage.getProductCount();
 
   for (let i = 0; i < count; i++) {
     await expect(searchPage.productNames.nth(i)).toContainText(/pliers/i);

@@ -19,4 +19,8 @@ export class SearchPage {
     await this.searchBox.fill(product);
     await this.searchBox.press('Enter');
   }
+
+  async getProductCount(): Promise<number> {
+    return await this.productNames.count();
+  }
 }

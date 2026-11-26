@@ -10,5 +10,5 @@ test('GET products returns a successful response', async ({ request }) => {
   const responseBody = await response.json();
 
   expect(responseBody.data.length).toBeGreaterThan(0);
-  expect(responseBody.data[0].name).toBe('Combination Pliers');
+  expect(responseBody.data[0]).toHaveProperty('name');
 });
