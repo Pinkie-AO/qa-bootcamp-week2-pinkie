@@ -10,6 +10,6 @@ test('invalid login displays an error message', async ({ page }) => {
 
   await page.locator('[data-test="login-submit"]').click();
 
-  await expect(page.getByText('Login failed')).toBeVisible();;
+  await expect(page.getByText('Invalid email or password')).toBeVisible();
 });
 
